@@ -1,0 +1,292 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>EBZ.Mobile</AssemblyName>
+    <RootNamespace>EBZ.Mobile</RootNamespace>
+  </PropertyGroup>
+
+<ItemGroup>
+<PackageReference Include="Acr.UserDialogs" Version="7.0.4" />
+<PackageReference Include="akavache" Version="6.8.1" />
+<PackageReference Include="Autofac" Version="4.9.4" />
+<PackageReference Include="Polly" Version="7.1.1" />
+<PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+<PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+<PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+<PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+<PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+<PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfSunburstChart" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfMaskedEdit" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfBarcode" Version="17.2.0.46" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ItemGroup>
+
+<ItemGroup>
+  <Reference Include="ZXing.Net.Mobile.Core">
+    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\ZXing.Net.Mobile.Core.dll</HintPath>
+  </Reference>
+  <Reference Include="ZXing.Net.Mobile.Forms">
+    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\ZXing.Net.Mobile.Forms.dll</HintPath>
+  </Reference>
+  <Reference Include="zxing.portable">
+    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\zxing.portable.dll</HintPath>
+  </Reference>
+  <Reference Include="ZXingNetMobile">
+    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\ZXingNetMobile.dll</HintPath>
+  </Reference>
+</ItemGroup>
+
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Marketer\CustomerStyles.xaml.cs">
+      <DependentUpon>CustomerStyles.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Marketer\CustomersListPage.xaml.cs">
+      <DependentUpon>CustomersListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Marketer\NewCustomerPage.xaml.cs">
+      <DependentUpon>NewCustomerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Sales\CheckoutPage.xaml.cs">
+      <DependentUpon>CheckoutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Sales\PaymentSuccessfulPage.xaml.cs">
+      <DependentUpon>PaymentSuccessfulPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Sales\PaymentPage.xaml.cs">
+      <DependentUpon>PaymentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Sales\SalesStyles.xaml.cs">
+      <DependentUpon>SalesStyles.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\SimpleEmailEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\SimpleForgotPasswordPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\SimpleLoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\SimpleResetPasswordPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\SimpleSignUpPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Marketer\CustomerStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Marketer\CustomersListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Marketer\NewCustomerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Marketer\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sales\CheckoutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sales\PaymentSuccessfulPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sales\PaymentFailedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sales\PaymentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sales\SelectProductPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sales\StartSalesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sales\SalesStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sales\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\User\ProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\User\Recharges.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\User\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\User\Transactions.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

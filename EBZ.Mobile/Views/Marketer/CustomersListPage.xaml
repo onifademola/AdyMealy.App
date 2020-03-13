@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EBZ.Mobile.Views.Marketer.CustomersListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EBZ.Mobile.Controls"
+    xmlns:converter="clr-namespace:EBZ.Mobile.Converters"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:viewModel="clr-namespace:EBZ.Mobile.ViewModels.Marketer"
+    xmlns:pullToRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+    xmlns:listview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:CustomersListPageModel />
+    </ContentPage.BindingContext>
+
+    <!--<ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0">
+                <controls:TitleView Title="My Customers" BackgroundColor="{DynamicResource Gray-White}" />
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>-->
+    
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <Label Text="My Customers"                           
+                       HorizontalTextAlignment="Center"
+                       FontSize="Small"/>
+            </StackLayout>
+            <ScrollView Grid.Row="1">
+                
+                <pullToRefresh:SfPullToRefresh x:Name="pullToRefresh" 
+                                       PullingThreshold="60" 
+                                       ProgressStrokeWidth="5" 
+                                       ProgressBackgroundColor="Transparent" 
+                                       ProgressStrokeColor="Transparent" 
+                                       RefreshContentWidth="40" 
+                                       RefreshContentHeight="40" 
+                                       TransitionMode="Push"
+                                       Margin="5,5,5,5" 
+                                               Refreshing="PullToRefresh_Refreshing">
+                    <pullToRefresh:SfPullToRefresh.PullableContent>
+                        
+                        <listview:SfListView x:Name="listView" 
+                                       ItemSize="80" 
+                                       ItemsSource="{Binding Customers}" 
+                                       ItemSpacing="5,5,5,5" 
+                                       BackgroundColor="{DynamicResource Gray-F0}"
+                                       SelectionBackgroundColor="Khaki"
+                                       SelectionGesture="Tap"
+                                       SelectedItem="{Binding SelectedItem}"
+                                       AllowGroupExpandCollapse="True"
+                                       SelectionMode="Single">
+
+                            <listview:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid BackgroundColor="WhiteSmoke" Padding="5" RowSpacing="10">
+
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemTappedCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
+                                        </Grid.GestureRecognizers>
+
+                                        <Grid.ColumnDefinitions>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--<StackLayout Grid.Column="0"  
+                                             HeightRequest="70" 
+                                             WidthRequest="70"  
+                                             VerticalOptions="Center" 
+                                             HorizontalOptions="Center" 
+                                             BackgroundColor="{Binding BackgroundColor}">
+
+                                    <Grid  HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand" >
+
+                                        <Label Text="{Binding ProductName}" 
+                                               TextColor="White" 
+                                               FontSize="25" 
+                                               HorizontalOptions="CenterAndExpand" 
+                                               VerticalOptions="CenterAndExpand"/>
+                                    </Grid>
+
+                                </StackLayout>-->
+
+                                        <Grid RowSpacing="0">
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+
+                                            <Label 
+                                                Grid.ColumnSpan="2"
+                                                Text="{Binding Email}" 
+                                                TextColor="Black" 
+                                                FontAttributes="Bold" 
+                                                FontSize="16"/>
+                                            <Label Grid.Row="1" 
+                                           FontSize = "16" 
+                                           TextColor="Black" 
+                                           Text="{Binding Category}" 
+                                           LineBreakMode="TailTruncation"  />
+                                            <Label Grid.Row="2" Grid.Column="0"
+                                           FontSize = "14" 
+                                           TextColor="CadetBlue" 
+                                           Text="{Binding Dob}" 
+                                           LineBreakMode="TailTruncation"  />
+                                            <Label Grid.Row="2" Grid.Column="1" 
+                                           FontSize = "14" 
+                                           TextColor="DarkBlue" 
+                                           Text="{Binding Phone}" 
+                                                   HorizontalTextAlignment="End"
+                                                   HorizontalOptions="End"
+                                           LineBreakMode="TailTruncation"  />
+
+                                        </Grid>
+
+                                    </Grid>
+                                </DataTemplate>
+                                </listview:SfListView.ItemTemplate>
+
+                        </listview:SfListView>
+                    </pullToRefresh:SfPullToRefresh.PullableContent>
+                </pullToRefresh:SfPullToRefresh>
+                <!--  Featured blog list  -->
+                <!--<StackLayout
+                x:Name="StackLayout"
+                Padding="16"
+                BindableLayout.ItemsSource="{Binding Customers}"
+                Spacing="16">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid
+                                BackgroundColor="{DynamicResource Gray-F0}" 
+                                RowSpacing="0">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition>
+                                        <ColumnDefinition.Width>
+                                            <OnPlatform Default="*" UWP="Auto" />
+                                        </ColumnDefinition.Width>
+                                    </ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                --><!--  Blog image  -->
+                                <!--<ffimageloading:CachedImage
+                                Grid.RowSpan="3"
+                                Aspect="Fill"
+                                BackgroundColor="{DynamicResource Gray-F0}"
+                                HeightRequest="110"
+                                Source="{Binding ImagePath}"
+                                VerticalOptions="Center"
+                                WidthRequest="120" />-->
+
+                                <!--  Blog title  --><!--
+                                <Label
+                                Grid.Column="1"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="16"
+                                LineBreakMode="TailTruncation"
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.25,
+                                                        iOS=1.25}"
+                                MaxLines="2"
+                                Text="{Binding Email}"
+                                TextColor="{DynamicResource Gray-56}" />
+
+                                --><!--  Author name  --><!--
+                                <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="14"
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.5}"
+                                Text="{Binding Category}"
+                                TextColor="{DynamicResource Gray-56}" />
+
+                                --><!--  Published date and Average reading time  --><!--
+                                <Label
+                                    HorizontalOptions="EndAndExpand"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Margin="0,2,0,8"
+                                FontFamily="{StaticResource Montserrat-Regular}"
+                                FontSize="15"
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.5}"
+                                TextColor="{DynamicResource Gray-94}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Dob}" />
+                                            <Span Text=" | " />
+                                            <Span Text="{Binding Phone}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                --><!--  Bookmark button  --><!--
+                                <buttons:SfButton
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Margin="0"
+                                Padding="0"
+                                Command="{Binding Path=BindingContext.BookmarkCommand, Source={x:Reference StackLayout}}"
+                                CommandParameter="{Binding .}"
+                                CornerRadius="4"
+                                HeightRequest="32"
+                                HorizontalOptions="End"
+                                Style="{StaticResource BookmarkIconStyle}"
+                                Text="{Binding IsBookmarked, Converter={StaticResource BoolToStringConverter}, ConverterParameter=0}"
+                                VerticalOptions="Start"
+                                WidthRequest="32" />
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference StackLayout}}" CommandParameter="{Binding .}" />
+                                </Grid.GestureRecognizers>
+
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>-->
+            </ScrollView>
+
+            <buttons:SfButton Grid.Row="1" 
+                              Text=" + "
+                              Command="{Binding AddCommand}"
+                              Style="{StaticResource SfCButtonStyle}"/>
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

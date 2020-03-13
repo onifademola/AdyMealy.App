@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="EBZ.Mobile.Views.Sales.CheckoutPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:numericupdown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:EBZ.Mobile.Controls"
+    xmlns:converter="clr-namespace:EBZ.Mobile.Converters"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:viewModel="clr-namespace:EBZ.Mobile.ViewModels.Sales"
+    Title=""
+    BackgroundColor="{DynamicResource Gray-F0}"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="SalesStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding context for page  -->
+    <ContentPage.BindingContext>
+        <viewModel:CheckoutPageModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="{Binding InputSalesPinVerifyColor}">
+            <!--<ScrollView.VerticalOptions>
+                <OnIdiom
+                    x:TypeArguments="LayoutOptions"
+                    Default="CenterAndExpand"
+                    Phone="FillAndExpand" />
+            </ScrollView.VerticalOptions>-->
+            <FlexLayout x:Name="flexbckgrnd" Padding="10" Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
+                                                             PhoneLandscape='150,32',
+                                                             TabletPortrait='200,50',
+                                                             TabletLandscape='300,50',
+                                                             Desktop='30'}"
+                
+                Direction="Column"
+                        JustifyContent="SpaceAround"
+                WidthRequest="{OnPlatform Default='-1',
+                                          UWP='350'}">
+                <Label Text="User requesting a meal"
+                   TextColor="Black" 
+                   FontFamily="Arial"
+                   FontSize="Title"
+                       HorizontalTextAlignment="Center">
+                </Label>
+                <BoxView Color="#37416A" Margin="0,0,0,50" HeightRequest="2" VerticalOptions="Center" HorizontalOptions="Fill" />
+                <ContentView HorizontalOptions="CenterAndExpand">
+                    <Label Text="{Binding Email}"
+                   TextColor="DodgerBlue" 
+                   FontFamily="Arial"
+                   FontSize="Large">
+                    </Label>
+                </ContentView>
+                <Grid>
+                    <Grid.RowDefinitions>                        
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*" />
+                        <ColumnDefinition Width="0.7*" />
+                    </Grid.ColumnDefinitions>
+                    <Label 
+                        Grid.Row="0"
+                        Grid.Column="0" Style="{StaticResource LabelStyle}">First Name:</Label>
+                    <Label 
+                        Grid.Row="0"
+                        Grid.Column="1"
+                         Style="{StaticResource LabelStyle}"
+                        FontSize="18"
+                        TextColor="Black"
+                        Text="{Binding FirstName}"/>
+                </Grid>
+
+                <Grid>
+                    <Grid.RowDefinitions>                        
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="0.7*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label 
+                        Grid.Row="0"
+                        Grid.Column="0" Style="{StaticResource LabelStyle}">Last Name</Label>
+                    <Label 
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Style="{StaticResource LabelStyle}"
+                        FontSize="18"
+                        TextColor="Black"
+                        Text="{Binding LastName}"/>
+                </Grid>
+                
+                
+                <Label Style="{StaticResource LabelStyle}">Department</Label>
+                <Label 
+                    FontSize="22"
+                    TextColor="Black"
+                    Text="{Binding DepartmentName}"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label 
+                        Grid.Row="0"
+                        Grid.Column="0" Style="{StaticResource LabelStyle}">No. of meal allowed per day</Label>
+                    <Label 
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Style="{StaticResource LabelStyle}"
+                        FontSize="18"
+                        TextColor="Black"
+                        Text="{Binding MealEntitledPerDay}"/>
+                </Grid>
+
+                <StackLayout Margin="0,60,0,0">
+                    <buttons:SfButton 
+                        x:Name="qbtn"
+                        Command="{Binding PayCommand}"
+                        Text="SERVE"
+                        WidthRequest      ="120"
+                        HeightRequest     ="120"
+                        CornerRadius      ="60"
+                        VerticalOptions   ="Center"
+                        HorizontalOptions ="Center"
+                        Style="{StaticResource SfCButtonStyle}"/>
+                </StackLayout>
+            </FlexLayout>
+            
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

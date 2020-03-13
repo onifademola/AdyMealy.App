@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<zxing:ZXingScannerPage xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        x:Class="EBZ.Mobile.Views.Sales.StartSalesPage"
+                        xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+                        xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+                        Title="Scan screen" IsScanning="true">
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+        <StackLayout>
+            <Label Text="MEALY" 
+                    FontSize="34"
+                   TextColor="DarkBlue"
+                   HorizontalTextAlignment="Center"
+            />
+            <Label Text="Canteen made easy !" 
+                    FontSize="Subtitle"
+                   TextColor="DarkBlue"
+                   HorizontalTextAlignment="Center"
+            />
+        </StackLayout>
+        <buttons:SfButton 
+                              
+                              x:Name="buttonScanDefaultOverlayCheckIn"
+                              Text="QUEUE A CUSTOMER"
+                              FontSize="18"
+                              Margin="20,20,20,20"
+                              BorderWidth="1" HeightRequest="70"
+                              CornerRadius="30"/>
+        <buttons:SfButton 
+                              x:Name="buttonScanDefaultOverlayCheckOut"
+                              Text="SERVE A CUSTOMER"
+                                FontSize="18"
+                              Margin="20,20,20,20"
+                              BorderWidth="1"
+                                HeightRequest="70"
+                              CornerRadius="30"/>
+        <BoxView Color="#37416A" Margin="20,0,20,0" HeightRequest="2" VerticalOptions="Center" HorizontalOptions="Fill" />
+
+        <Label x:Name="cpyright" HorizontalTextAlignment="Center" />
+
+    </StackLayout>
+</zxing:ZXingScannerPage>
